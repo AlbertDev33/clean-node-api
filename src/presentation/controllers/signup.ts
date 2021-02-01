@@ -4,11 +4,12 @@ import { badRequest } from '../helpers/http-helper';
 
 export default class SignUpController {
   handle(httpRequest: IHttpRequest): IHttpResponse {
-    if (!httpRequest.body.name) {
-      return badRequest(new MissingParamError('name'));
-    }
-    if (!httpRequest.body.email) {
-      return badRequest(new MissingParamError('email'));
+    const requiredFields = ['name', 'email'];
+    // eslint-disable-next-line no-restricted-syntax
+    for (const field of requiredFields) {
+      if (!httpRequest.body[field]) {
+        return badRequest(new MissingParamError(field));
+      }
     }
     return { statusCode: 400, body: '' };
   }
