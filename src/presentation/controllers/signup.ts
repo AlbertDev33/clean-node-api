@@ -4,7 +4,7 @@ import { badRequest } from '../helpers/http-helper';
 
 export default class SignUpController {
   handle(httpRequest: IHttpRequest): IHttpResponse {
-    const requiredFields = ['name', 'email'];
+    const requiredFields = ['name', 'email', 'password'];
     // eslint-disable-next-line no-restricted-syntax
     for (const field of requiredFields) {
       if (!httpRequest.body[field]) {
