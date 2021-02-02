@@ -1,6 +1,5 @@
 import { IHttpResponse } from '../protocols/http';
-import MissingParamError from '../errors/missing-param-error';
-import ServerError from '../errors/server-error';
+import { MissingParamError, ServerError } from '../errors';
 
 export const badRequest = (error: MissingParamError): IHttpResponse => ({
   statusCode: 400,
