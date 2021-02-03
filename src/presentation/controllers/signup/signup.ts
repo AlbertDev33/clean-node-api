@@ -49,6 +49,6 @@ export default class SignUpController implements IController {
     } catch (error) {
       return serverError();
     }
-    return { statusCode: 200, body: '' };
+    return { statusCode: 400, body: '' };
   }
 }
