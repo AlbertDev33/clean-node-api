@@ -1,4 +1,5 @@
 /* eslint-disable consistent-return */
+import { AddAccount } from 'src/domain/usecases/add-account';
 import {
   Controller,
   EmailValidator,
@@ -10,7 +11,11 @@ import { MissingParamError, InvalidParamError } from '../errors';
 import { badRequest, serverError } from '../helpers/http-helper';
 
 export class SignUpController implements Controller {
-  constructor(private emailValidator: EmailValidator) {}
+  constructor(
+    private emailValidator: EmailValidator,
+
+    private addAccount: AddAccount,
+  ) {}
 
   handle(httpRequest: HttpRequest): any {
     try {
@@ -26,7 +31,7 @@ export class SignUpController implements Controller {
           return badRequest(new MissingParamError(field));
         }
       }
-      const { email, passowrd, passwordConfirmation } = httpRequest.body;
+      const { name, email, password, passwordConfirmation } = httpRequest.body;
 
       const isValid = this.emailValidator.isValid(email);
 
@@ -34,9 +39,15 @@ export class SignUpController implements Controller {
         return badRequest(new InvalidParamError('email'));
       }
 
-      if (passowrd !== passwordConfirmation) {
+      if (password !== passwordConfirmation) {
         return badRequest(new InvalidParamError('passwordConfirmation'));
       }
+
+      this.addAccount.add({
+        name,
+        email,
+        password,
+      });
     } catch (error) {
       return serverError();
     }
