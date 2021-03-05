@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test:bk": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:default": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test": "jest --passWithNoTests --runInBand",
-    "test:unit": "yarn test -- --watch -c jest-unit-config.ts",
+    "test:unit": "yarn test:default -- -c jest-unit-config.ts",
     "test:integration": "yarn test -- --watch -c jest-integration-config.js",
     "test:staged": "yarn test -- --findRelatedTests",
     "test:ci": "yarn test -- --coverage"
