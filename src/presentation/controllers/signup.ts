@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import {
   Controller,
   EmailValidator,
@@ -9,9 +10,9 @@ import { MissingParamError, InvalidParamError } from '../errors';
 import { badRequest, serverError } from '../helpers/http-helper';
 
 export class SignUpController implements Controller {
-  constructor(private readonly emailValidator: EmailValidator) {}
+  constructor(private emailValidator: EmailValidator) {}
 
-  handle(httpRequest: HttpRequest): HttpResponse {
+  handle(httpRequest: HttpRequest): any {
     try {
       const requiredFields = [
         'name',
@@ -31,10 +32,12 @@ export class SignUpController implements Controller {
       if (!isValid) {
         return badRequest(new InvalidParamError('email'));
       }
+
+      if (httpRequest.body.passowrd !== httpRequest.body.passwordConfirmation) {
+        return badRequest(new InvalidParamError('passwordConfirmation'));
+      }
     } catch (error) {
       return serverError();
     }
-
-    return serverError();
   }
 }
