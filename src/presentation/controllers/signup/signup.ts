@@ -1,14 +1,14 @@
 /* eslint-disable consistent-return */
-import { AddAccount } from 'src/domain/usecases/add-account';
 import {
+  AddAccount,
   Controller,
   EmailValidator,
   HttpRequest,
   HttpResponse,
-} from '../protocols';
+} from './signup-protocols';
 
-import { MissingParamError, InvalidParamError } from '../errors';
-import { badRequest, serverError } from '../helpers/http-helper';
+import { MissingParamError, InvalidParamError } from '../../errors';
+import { badRequest, serverError } from '../../helpers/http-helper';
 
 export class SignUpController implements Controller {
   constructor(
