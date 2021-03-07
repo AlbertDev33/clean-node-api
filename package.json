@@ -8,7 +8,7 @@
     "test:default": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test": "jest --passWithNoTests --runInBand",
     "test:unit": "yarn test:default -- -c jest-unit-config.ts",
-    "test:integration": "yarn test -- --watch -c jest-integration-config.js",
+    "test:integration": "yarn test -- -c jest-integration-config.js",
     "test:staged": "yarn test -- --findRelatedTests",
     "test:ci": "yarn test -- --coverage"
   },
@@ -18,6 +18,7 @@
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.20",
     "@types/mongodb": "^3.6.9",
+    "@types/supertest": "^2.0.10",
     "@types/validator": "^13.1.3",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",
@@ -32,6 +33,7 @@
     "mongodb-memory-server": "^6.9.3",
     "mongodb-memory-server-core": "^6.9.3",
     "prettier": "^2.2.1",
+    "supertest": "^6.1.3",
     "ts-jest": "^26.5.0",
     "typescript": "^4.1.3"
   },
