@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "start": "tsnd --transpile-only --ignore-watch node_modules src/main/server.ts",
     "test:default": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test": "jest --passWithNoTests --runInBand",
     "test:unit": "yarn test:default -- -c jest-unit-config.ts",
